@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>HTML5 调用手机摄像头</title>
+    <style type="text/css">
+    </style>
+
+</head>
+<body>
+<form id = "sum" enctype="multipart/form-data" >
+    <div align="center">
+        <div class="up_pres">
+            <div id="showImageName" class="imgName"></div>
+            <input type="file" name="myfile" id="myfile"  onchange="getImageName(this)" multiple="multiple"/>
+            <p>选择您要上传的文件</p>
+        </div>
+        <input type="button" onclick="demo()" value="提交" class="submitButten"/>
+    </div>
+    <div id="loading" class="loading">正在全力上传中...</div>
+    <div class="upInfo"><strong>results：</strong><span style="color: red;">正在上传 . . . . . </span></div>
+</form>
+<script src="js/jquery.min.js"></script>
+<script>
+    function getImageName(file) {
+//        showImageName.innerHTML = "<img src='img/rar.png' style='width:30px;'>"+file.files[0].name
+//        $('.up_pres p').html("点击更改已选文件");
+    return;
+    }
+</script>
+<script>
+    function demo(){
+        var load = document.getElementById("loading");
+        load.style.display="block";
+        var input=document.querySelector('#myfile');
+        console.log(input.files);
+        var oMyForm = new FormData();
+        for(var i=0;i<input.files.length;i++){
+            var file=input.files[i];
+            oMyForm.append("myfile", file);
+        }
+        console.log(oMyForm);
+        $.ajax({
+            type: "POST",
+            url: "/api/ocr/case_upload/",
+            data:oMyForm,
+            cache: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            success: function(msg){
+                console.log(msg);
+            }
+        })
+
+    }
+</script>
+</body>
+</html>

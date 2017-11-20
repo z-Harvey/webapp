@@ -1,0 +1,245 @@
+*{margin:0;padding:0;list-style-type: none}
+#app1{
+    background: #fff;
+    width:100%;
+    height:100%;
+    position: fixed;
+    overflow: scroll;
+}
+#Box{
+    width: 100%;
+    min-height: 100%;
+    background: rgba(109,206,239,0.2);
+    position: relative;
+}
+#Boxleft{
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    background:  #005BAC;
+    box-shadow: 3px 3px 3px rgba(0,0,0,1);
+}
+#Boxleft>div:nth-child(1){
+    width:100%;
+    text-align: center;
+}
+#Boxleft>div:nth-child(1)>img{
+    margin:25px auto;
+}
+#Boxleft>div:nth-child(2){
+    width:90%;
+    height:75%;
+    margin:0 auto;
+    padding:10px 0;
+    background:#fff;
+}
+#Boxleft>div:nth-child(2)>button{
+    width:40%;
+    height:30px;
+    border:0;
+    background:#00B7EE;
+    color:#fff;
+    border-radius: 3px;
+}
+#Boxleft>div:nth-child(2)>button:nth-child(6){
+    margin-left:10%;
+}
+#Boxleft>div:nth-child(2)>div:nth-child(5){
+    width:95.5%;
+    height:340px;
+    left:0.4%;
+    border-top: 2px solid #888888;
+    background:#fff;
+    overflow: auto;
+}
+.tit{
+    margin-top:1%;
+    border:2px solid #888;
+    background: #888888;
+}
+.tit>input{
+    width:80%;
+}
+.tit>div{
+    display: flex;
+    justify-content: space-around;
+}
+.tit>div>div{
+    width:28%;
+}
+.tit>div>div:nth-child(3){
+    width:40%;
+}
+#Boxleft>div:nth-child(2)>div{
+    width:95%;
+    margin:0 auto;
+}
+#Boxleft>div:nth-child(2)>div>span{
+    display: inline-block;
+    float: right;
+}
+#Boxleft>div:nth-child(3){
+    position: absolute;
+    width:100%;
+    height:10%;
+    bottom: 0;
+    background:  #1565c0;
+    text-align: center;
+    padding: 5% 0 0;
+}
+#Boxleft>div>p>span{
+    float: right;
+}
+#Boxright{
+    position: absolute;
+    width:80%;
+    height:100%;
+    left:20.5%;
+    right: 0;
+    background: #e7e7e7;
+}
+#Boxright>h3{
+    text-indent: 10px;
+    background: rgba(255,255,255,.6);
+}
+.lis{
+    display: flex;
+    justify-content: space-around;
+}
+.lis:hover{
+    background: rgba(0,0,0,0.25);
+}
+.lis>div{
+    width: 20%;
+    display: inline-block;
+    font-size: 12px;
+}
+.lis>div:nth-child(3){
+    width:40%;
+}
+.Handle>.Right_img{
+    width:78%;
+    height:50%;
+    position: fixed;
+    overflow: auto;
+    display: inline-block;
+    border:2px solid #888;
+    text-align: center;
+}
+.Right_img>img{
+    width:95%;
+}
+.details_data{
+    width:80%;
+    position: fixed;
+    padding-left:15px;
+    top:55%;
+}
+.xiugai{
+    width:30%;
+}
+
+.details_data>div>div>div{
+    color:#000;
+    padding:1px;
+    padding-left:10px;
+    border:1px solid rgba(0,0,0,.2);
+}
+.details_data>div>div:nth-child(1)>div{
+    border-right:1px;
+}
+.details_data>div:nth-child(1)>div>div>span{
+    display: inline-block;
+    float: right;
+}
+
+.details_data>div:nth-child(1)>div>div>div{
+    text-align: right;
+}
+.details_data>div:nth-child(1)>div>div:hover{
+    background: rgba(0,0,0,0.5);
+    color:#fff;
+}
+.details_data>div:nth-child(1)>div{
+    font-size: 12px;
+    width:48%;
+    display: inline-block;
+}
+.details_data>div:nth-child(1)>div:nth-child(1){
+    float: left;
+}
+.details_data>div{
+    width:100%;
+}
+.details_data>div>span{
+    border:1px solid #000;
+    padding-left:5px;
+    width:5%;
+}
+#mote{
+    position: fixed;
+    background: #888;
+    width:100%;
+    height:100%;
+    z-index: 999;
+}
+#mote>img{
+    width:70%;
+    float: right;
+    margin-right:50px;
+}
+#mote>div{
+    display: inline-block;
+    width:20%;
+    margin:5px 5px 5px 5px;
+}
+#mote>div>div>img{
+    width:100%;
+}
+#mote>div>input{
+    margin:0 0 0 20px;
+}
+#DataNum{
+    height:80%;
+    overflow: auto;
+}
+.tijiao{
+    display: block;width:100px;height:20px;margin-left:20px;
+}
+.Notice{
+    background:red;
+!important;
+}
+.Notice:hover{!important;
+    background:red;
+}
+.Reject{
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+.Reject>div{
+    text-align: center;
+    width:30%;
+    margin-left:35%;
+    background: #fff;
+    margin-top:10%;
+}
+.Reject>div>textarea{
+    resize: none;
+    width:90%;
+    height:100px;
+    margin:10px 5% 10px;
+}
+.Reject>div>div{
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+    letter-spacing: 20px;
+}
+.Reject>div>div>button{
+    width:40%;
+    height:30px;
+}

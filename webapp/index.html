@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>保数通在线理赔终端系统</title>
+    <link rel="stylesheet" href="/static/mobile_terminal/css/ordinary.css">
+</head>
+<body>
+<div id="app" >
+    <div id="titleImg" style="font-size:2em;background-image: url('/static/mobile_terminal/images/app_title.png')">
+    </div>
+    <div id="bt">
+        <img v-if="app6" class="fanhui deBug" src="/static/mobile_terminal/images/left.png" @click="fanhiu(6)" alt="">
+        <img v-if="app7" class="fanhui deBug" src="/static/mobile_terminal/images/left.png" @click="fanhiu(7)" alt="">
+        <img v-if="app8" class="fanhui deBug" src="/static/mobile_terminal/images/left.png" @click="fanhiu(8)" alt="">
+        <img v-if="app9" class="fanhui deBug" src="/static/mobile_terminal/images/left.png" @click="fanhiu(9)" alt="">
+        <img v-if="fram" class="fanhui deBug" src="/static/mobile_terminal/images/left.png" @click="fanhiu('fram')" alt="">
+        <p>理赔申请</p>
+    </div>
+    <div id="motai" style="display: none">
+        <div>
+            <button onclick="sim()">
+                <img src="/static/mobile_terminal/images/hid.png" alt="">
+            </button>
+            <div>
+                <p>*为了确保图像分析的准确度，请您上传清晰度较高的图片。</p>
+            </div>
+        </div>
+    </div>
+    <div id="enlargeImg" style="display: none" onclick="enlargeImgtogglo(this)">
+        <img src="" alt="">
+    </div>
+    <div class="daohang" v-if="app2||app3||app4||app5">
+        <div v-bind:class="{'current': app2}">1</div>
+        <div v-bind:class="{'current': app3}"></div>
+        <div v-bind:class="{'current': app3}">2</div>
+        <div v-bind:class="{'current': app4}"></div>
+        <div v-bind:class="{'current': app4}">3</div>
+    </div>
+    <div id="loading">
+        <img src="/static/mobile_terminal/images/loading.gif" alt="">
+        <p>正在对图片进行识别，请等待...</p>
+        <button @click="Return" disabled>点击返回首页查询进度</button>
+        <h2 class="Support1">
+            <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
+        </h2>
+    </div>
+    <div id="app1" v-if="app1">
+        <div style="background-image: url('/static/mobile_terminal/images/app1_button1.png')" v-on:click="Reporttype('个人报案',1)" ></div>
+        <div style="background-image: url('/static/mobile_terminal/images/app1_button2.png')" v-on:click="Rep('查询结果')" ></div>
+        <h2 class="Support">
+            <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
+        </h2>
+    </div>
+    <div id="app2" v-if="app2">
+        <ul>
+            <li><div>姓名：</div><input type="text" @keyup="changes()" v-model="file.name" placeholder="姓名" ></li>
+            <li><div>身份证号：</div><input type="text" maxlength="18" @keyup="changes()" v-model="file.ID" placeholder="身份证号"  onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'');"></li>
+            <li><div>电话号码：</div><input type="number" @keyup="changes()" v-model="file.phoneNumber" placeholder="电话号码"></li>
+            <li><div>公司名称：</div><input type="text" @keyup="changes()" v-model="file.company" placeholder="公司名称"></li>
+        </ul>
+        <br>
+        <div class="file_type">
+            出险类型:
+            <br>
+            <div>
+                <span class="typeB1" v-on:click="typeButton('门诊医疗',1),changes()">门诊医疗</span>
+                <span class="typeB2" v-on:click="typeButton('住院医疗',2),changes()">住院医疗</span>
+                <span class="typeB3" v-on:click="typeButton('意外医疗',3),changes()">意外医疗</span>
+            </div>
+            <div>
+                <span class="typeB4" v-on:click="typeButton('住院津贴',4),changes()">住院津贴</span>
+                <span class="typeB5" v-on:click="typeButton('身故',5),changes()">身故</span>
+                <span class="typeB6" v-on:click="typeButton('全残/残疾',6),changes()">全残/残疾</span>
+            </div>
+            <div>
+                <span class="typeB7" v-on:click="typeButton('重大疾病',7),changes()">重大疾病</span>
+                <span class="typeB8" v-on:click="changes()" style="opacity: 0;"></span>
+                <span class="typeB9" v-on:click="changes()" style="opacity: 0;"></span>
+            </div>
+        </div>
+        <button v-on:click="formSubmit()" disabled>下一步</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class="Support">
+            <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
+        </h2>
+    </div>
+    <div id="app3" v-if="app3">
+        <div>
+            <h1>案件编号:<span style="color:red;" v-html="case_id"></span></h1>
+            <div id="images_Box">
+                <div id="imagesBOX">
+                </div>
+                <div id="imgBox">
+                    <div href="javascript:;" class="a-upload a-upload0" onclick="fn1(0)">
+                        <input class="imagesInput" id="myfile0" type="file" accept="image/*" @change="filesInput()"/>
+                    </div>
+                </div>
+            </div>
+            <button v-on:click="imgButton()" id="app3_Button" disabled="true">开始上传</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <div class="falseClick" onclick="Prompt()"></div>
+        <h2 class="Support">
+            <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
+        </h2>
+    </div>    <div id="app4" v-if="app4">
+    <div>
+        <div><span>姓名:</span><span v-html="file.name"></span></div>
+        <div><span>身份证号:</span><span v-html="file.ID"></span></div>
+        <div><span>报案号:</span><span style="color:red;" v-html="case_id"></span></div>
+    </div>
+    <div>
+        <div>
+            <img v-for="AjaxDatas in AjaxData" class="img1"  v-bind:src="AjaxDatas.image_url" v-on:click="imgUr(AjaxDatas.id)" alt="1">
+        </div>
+        <div v-if="letNonoOnBlock !== 0">
+            <div>
+                <img  v-bind:src="clickImgData.image_url" onclick="enlargeImg(this)" alt="1">
+            </div>
+            <div v-if="separation_state === 1">
+                <div>自付一: <span style="color:red;" v-html="clickImgData.self_conceit">200</span></div>
+                <div>自付二: <span style="color:red;" v-html="clickImgData.pay_two">400.5</span></div>
+                <div>自费: <span style="color:red;" v-html="clickImgData.jewelry">800</span></div>
+                <div>金额合计: <span style="color:red;" v-html="clickImgData.total">700.5</span></div>
+            </div>
+            <div v-if="separation_state === 2">
+                <div>姓名: <span v-html="clickImgData.name"></span></div>
+                <div>性别: <span style="color:red;" v-html="clickImgData.sex"></span></div>
+                <div>日期: <span style="color:red;" v-html="clickImgData.times"></span></div>
+                <div>定点医疗机构编码: <span style="color:red;" v-html="clickImgData.hospital"></span></div>
+                <div>就诊科室: <span style="color:red;" v-html="clickImgData.department"></span></div>
+                <div>配方: <span style="color:red;" v-html="clickImgData.medicine">700.5</span></div>
+            </div>
+        </div>
+        <div v-if="letNonoOnBlock === 0"></div>
+    </div>
+    <button  @click="Return">点击返回首页查询详情信息</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="Support1">
+        <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
+    </h2>
+</div>
+    <div id="app5" v-if="app5">
+        <h1>总览</h1>
+        <ul>
+            <li>被保险人姓名： <span v-html="file.name">周立波</span></li>
+            <li>身份证号码： <span  v-html="file.ID"></span></li>
+            <li>手机号码：<span  v-html="file.phoneNumber"></span></li>
+            <li>公司名称：<span  v-html="file.company"></span></li>
+            <li>报案号：<span  v-html="case_id">548369751585</span></li>
+            <li>已上传票据张数：<span  v-html="Bill_number">2张</span></li>
+        </ul>
+        <ul v-if="fuse.invoice!==undefined"  v-for="p in fuse.invoice">
+            <li>总自付一：<span v-html="p.self_conceit">200</span></li>
+            <li>总自付二：<span v-html="p.pay_two">300</span></li>
+            <li>总自费：<span v-html="p.jewelry">800</span></li>
+            <li>总计：<span v-html="p.total">1300</span></li>
+        </ul>
+        <ul style="opacity:.6" v-if="fuse.pres!==undefined" v-for="k in fuse.pres">
+            <li>定点医疗机构编码：<span v-html="k.hospital">0411001</span></li>
+            <li>就诊科室：<span v-html="k.department">内分泌门诊</span></li>
+            <li>就诊日期：<span v-html="k.times"></span></li>
+            <li>临床诊断：<span v-html="k.diagnose">非毒性多个甲状腺结节</span></li>
+            <li>药品信息：<span v-html="k.medicine"></span></li>
+            <li>药品金额：<span v-html="k.cost">587.65</span></li>
+        </ul>
+        <div class=luck>看了又看</div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class="Support">
+            <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
+        </h2>
+    </div>
+    <div id="app6" v-if="app6">
+        <div v-for="q in query"  v-on:click="whole(q.uuid,q.user,q)">
+            <div><div>姓名:<span  v-text="q.user"></span></div><div>申请日期:<span  v-text="q.create_time">2017-10-11 15:10:56</span></div></div>
+            <div><div>保单号：<span>15498884554</span></div></div>
+            <div>
+                <div>报案号：<span  v-text="q.uuid" style="color:red;">1546245778</span></div>
+                <div style="float:right;">
+                    <span style="float:right;color:#17A05D;">已处理</span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class="Support">
+            <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
+        </h2>
+    </div>
+    <!--<a @click="iframe(quer.uuid)">-->
+        <!--已完成-->
+        <!--<span>点击查看理赔通知书</span>-->
+    <!--</a>-->
+    <div id="app7"  v-if="app7">
+        <div class="name_xinxi">
+            <div><div style="width:30%;">姓名:<span v-text="quer.user">asdf</span></div><div style="width:69%;">申请日期:<span v-text="quer.create_time">2017-10-11 15:12:25</span></div></div>
+            <div><div>保单号：<span>15498884554</span></div></div>
+            <div><div>报案号：<span style="color:red;"  v-text="quer.uuid">1546245778</span></div><div style="float:right;"><span style="float:right;color:#17A05D;">已处理</span></div></div>
+        </div>
+        <div>
+            <div class="xqy">
+                <div v-if="Bill_number_Data===1"><span>正在分拣您的单据</span></div>
+                <div v-if="Bill_number_Data!==1"><span>您本次申请共提交张数<span v-text="Bill_number_Data.case_quantity">12</span>张</span><span style="text-align: right;width:35%;color:#005BAC;"><a  @click="Documents">详情</a></span></div>
+                <div v-if="Bill_number_Data!==1"><span>医疗发票</span><span  v-text="Bill_number_Data.invoice_quantity+'张'">3张</span></div>
+                <div v-if="Bill_number_Data!==1"><span>医疗处方</span><span v-text="Bill_number_Data.pres_quantity+'张'">3张</span></div>
+                <div v-if="Bill_number_Data!==1"><span>其他单证</span><span v-text="Bill_number_Data.others+'张'">3张</span></div>
+                <div v-if="Bill_number_Data!==1"><span>申请金额</span><span v-text="Bill_number_Data.tot_up"></span></div>
+            </div>
+            <div class="xqdate" style="width:100%;font-size:0.6em;">
+                <div class="Invoice_details" v-if="fuse.invoice!==undefined" v-for="p in fuse.invoice" style="opacity:0.9;">
+                    <p><span>总自付一</span><span v-html="p.self_conceit">200</span></p>
+                    <p><span>总自付二</span><span v-html="p.pay_two">300</span></p>
+                    <p><span>总自费</span><span v-html="p.jewelry">800</span></p>
+                    <p><span>总计</span><span v-html="p.total">1300</span></p>
+                </div>
+                <hr style="border:1px solid #000;">
+                <div class="Prescription_details" style="opacity:.6;width:100%;" v-if="fuse.pres!==undefined" v-for="k in fuse.pres">
+                    <p><span>定点医疗机构编码</span><span v-html="k.hospital">0411001</span></p>
+                    <p><span>就诊科室</span><span v-html="k.department">内分泌门诊</span></p>
+                    <p><span>就诊日期</span><span v-html="k.times"></span></p>
+                    <p><span>临床诊断</span><span v-html="k.diagnose">非毒性多个甲状腺结节</span></p>
+                    <p><span style="float:left;">药品信息</span><span v-html="k.medicine"></span></p>
+                    <p><span>药品金额</span><span v-html="k.cost">587.65</span></p>
+                </div>
+                <hr style="border:1px solid #000;">
+            </div>
+            <button @click="Element9(9)">点击查看理赔信息</button>
+            <div class="shugang_Box">
+                <div class="shugang">
+                </div>
+                <div class="shugang_text">
+                    <div>
+                        您的申请已经过理赔员审核，正在提交资金动账。请耐心等候......
+                        <p>2017-10-11 19:56:25</p>
+                    </div>
+                    <div style="opacity: 0.5">
+                        您的申请已经提交，正在等待工作人员审核。
+                        <p>2017-10-11 19:56:25</p>
+                    </div>
+                    <div style="opacity: 0.5">
+                        正在识别您提交的单据信息，请等待。
+                        <p>2017-10-11 19:56:25</p>
+                    </div>
+                    <div style="opacity: 0.5">
+                        正在上传单据。
+                        <p>2017-10-11 19:56:25</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class="Support">
+            <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
+        </h2>
+    </div>
+    <div id="fram">
+        <iframe src="" frameborder="0"></iframe>
+        <h2 class="Support">
+            <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
+        </h2>
+    </div>
+    <div id="app8" v-if="app8">
+        <div class="tite">单证查询</div>
+        <div class="img_Box">
+            <div v-if="Bill_number_Data.invoice_quantity>0">
+                <div>
+                    发票
+                </div>
+                <div>
+                    <img v-for="p in img_Box"  v-if="p.separation_state===1"  onclick="enlargeImg(this)" v-bind:src="p.image_url" alt="">
+                </div>
+            </div>
+            <div v-if="Bill_number_Data.pres_quantity>0">
+                <div>
+                    处方
+                </div>
+                <div>
+                    <img  v-for="k in img_Box" v-if="k.separation_state===2"  onclick="enlargeImg(this)" v-bind:src="k.image_url" alt="">
+                </div>
+            </div>
+            <div v-if="Bill_number_Data.others>0">
+                <div>
+                    其他
+                </div>
+                <div>
+                    <img  v-for="k in img_Box" v-if="k.separation_state===3"  onclick="enlargeImg(this)" v-bind:src="k.image_url" alt="">
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class="Support">
+            <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
+        </h2>
+    </div>
+    <div id="app9" v-if="app9">
+        <div class="app9_d1c">
+            <p></p>
+            <div class="app9_d1c_1">
+                <p><span>案件编号:</span><span>PC010003428645</span></p>
+                <p><span>案件状态:</span><span style="color:red;">已给付</span></p>
+                <p><span>赔付金额:</span><span style="color:red;">354.26元</span></p>
+                <p><span>给付日期:</span><span>2017-11-10</span></p>
+                <p><span>给付方式:</span><span>银行转账</span></p>
+                <p><span>取款人姓名:</span><span>常青</span></p>
+                <p><span>取款人证件号:</span><span>610419700524****</span></p>
+                <p><span>银行账号:</span><span>6217 9006 **** **** 103</span></p>
+            </div>
+            <button @click="iframe(quer.uuid)">理赔通知书</button>
+            <div class="app9_d1c_2">
+                <p style="color:#333;">理赔进度</p>
+                <div>
+                    <div>
+                        <p>已给付</p>
+                        <p>2017-11-22
+                            10:43:27</p>
+                        <div></div>
+                    </div>
+                    <div>
+                        <p>支付中</p>
+                        <p>2017-11-22
+                            10:43:27</p>
+                        <div></div>
+                    </div>
+                    <div>
+                        <p>审核中</p>
+                        <p>2017-11-22
+                            10:43:27</p>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class="Support">
+            <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
+        </h2>
+    </div>
+</div>
+<script src="/static/mobile_terminal/js/jquery-3.2.1.min.js"></script>
+<script src="/static/mobile_terminal/js/min.js"></script>
+<script src="/static/mobile_terminal/js/base64.js"></script>
+<script src="/static/mobile_terminal/js/ordinaryJS.js"></script>
+<script>
+    function Prompt() {
+        $("#motai").show()
+    }
+    function sim() {
+        $("#motai").hide();
+        $("#myfile").click();
+    }
+    function fn1(num) {
+        $('#myfile'+num)[0].click();
+    }
+</script>
+</body>
+</html>

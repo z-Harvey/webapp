@@ -1,0 +1,33 @@
+发票
+    accumulate_medical_pay:累计医保范围内金额
+    fund_pay:基金支付
+    year_clinic_large_pay：年度门诊大额累计支付
+    capped_amount：超封顶金额
+    account_balance：本次支付后个人账户余额
+    total：合计
+    jewelry：自费
+    unit_supplement_pay：单位补充险[原公疗]支付
+    medical_pay：本次医疗范围内金额
+    clinic_large_pay：门诊大额支付
+    individual_payment_amount：个人支付金额
+    remnant_subsidy_pay：残军补助支付
+    self_conceit：自付一
+    name：姓名
+    personal_pay：个人账户支付
+    retire_supplement_pay：退休补充支付
+    medical_type：医保类型
+    amount_pay：起付金额
+    pay_two：自付二
+处方单
+    diagnose：诊断描述
+    image_name：图片名
+    sex：性别
+    department：科室
+    cost：药品金额
+    name：姓名
+    hospital：医院代码
+    times：处方时间
+    hospital_name：医院名称
+    image_url：图像URL
+    medicine：药品名称
+    age：年龄

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/showcasing.css">
+    <link rel="stylesheet" href="/static/css/vuecss.css">
+    <title>New</title>
+</head>
+<body >
+<div>
+    <div class="submit" >
+        <div id="moteFather">
+            <div class="mote">
+                <h1>提示<button onclick="Close('moteFather')"><img src="/static/images/group_img/cl.png"   alt=""></button></h1>
+                <div class="tis">
+                    <hr style="width:98%;">
+                    <br>
+                    <span >上传.zip压缩包,图片控制在10张以内。</span>
+                </div>
+            </div>
+        </div>
+
+
+        <form id = "sum" enctype="multipart/form-data" >
+            <div align="center">
+                <div class="up_pres">
+                    <div id="showImageName" class="imgName"></div>
+                    <input type="file" name="myfile" id="myfile"  onchange="getImageName(this)"/>
+                    <p>选择您要上传的文件</p>
+                </div>
+                <input type="button" onclick="demo()" value="提交" class="submitButten"/>
+            </div>
+            <div id="loading" class="loading">正在全力上传中...</div>
+            <div class="upInfo"><strong>results：</strong><span style="color: red;">正在上传 . . . . . </span></div>
+        </form>
+    </div>
+
+    <div class="Exhibition">
+        <div id="LeftTop">
+            <h2></h2>
+            <h2 class="hr2"></h2>
+            <h2 class="hr3"></h2>
+            <h2 class="hr4"></h2>
+        </div>
+        <div id="ExhibitionRight">
+            <img v-bind:src="image_url" src="" id="imgNamei" alt="">
+            <div id="">
+                <span>医院代码：{{hospital}}</span>
+                <span>金额：{{cost}}</span>
+                <span>金额：{{cost}}</span>
+            </div>
+        </div>
+        <div id="LeftButton">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function getImageName(file) {
+        showImageName.innerHTML = "<img src='/static/images/group_img/rar.png' style='width:30%;'>"+file.files[0].name
+        $('.up_pres p').html("点击更改已选文件");
+    }
+</script>
+<script src="/static/js/group_js/jquery.min.js"></script>
+<script src="/static/js/group_js/min.js"></script>
+<script src="/static/js/group_js/group.js"></script>
+
+
+</body>
+</html>

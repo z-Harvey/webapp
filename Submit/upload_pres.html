@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/showcasing.css">
+    <link rel="stylesheet" href="css/VueCss.css">
+    <title>Document</title>
+</head>
+<body >
+<div id="app1">
+    <div class="submit" >
+        <div id="moteFather">
+            <div class="mote">
+                <h1>提示<button onclick="Close('moteFather')"><img src="img/Close.png"   alt=""></button></h1>
+                <div class="tis">
+                    <hr style="width:98%;">
+                    <br>
+                    <span >1.此url是上传北京地区的处方数据。</span>
+                    <span >2.上传.zip压缩包,图片控制在10张以内。</span>
+                    <span >注意：结果返回在传！</span>
+                </div>
+            </div>
+        </div>
+
+
+        <form id = "sum" enctype="multipart/form-data" >
+            <div align="center">
+                <div class="up_pres">
+                    <div id="showImageName" class="imgName"></div>
+                    <input type="file" name="myfile" id="myfile"  onchange="getImageName(this)"/>
+                    <p>选择您要上传的文件</p>
+                </div>
+                <input type="button" v-on:click="demo" value="提交" class="submitButten"/>
+            </div>
+            <div id="loading" class="loading">正在全力上传中...</div>
+            <div class="upInfo"><strong>results：</strong><span style="color: red;">正在上传 . . . . . </span></div>
+        </form>
+    </div>
+<div style="width:100%;height:100%;background:#fff;">正在解析文件请等待{{addIndex}}</div>
+    <div class="Exhibition" >
+        <div class="LeftTop">
+            <hr class="hr1"><hr class="hr2"><hr class="hr3"><hr class="hr4">
+            <h3>{{msg.image_id}}</h3>
+        </div>
+        <div class="ExhibitionRight">
+            <div>
+                <img v-bind:src="Img_Url" alt="" style="width:100%;height:40%;">
+            </div>
+            <div>
+                <input v-if="separation_state" type="text">
+                <button v-if="separation_state" v-on:click="Confirm_change">确认修改</button>
+            </div>
+        </div>
+        <div class="LeftButton">
+            <div v-for="ImageName in msg.data">
+                <a v-on:click="ClickImg(ImageName.image_url,ImageName.separation_state)">{{ImageName.image_name}}</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+	function getImageName(file) {
+        showImageName.innerHTML = "<img src='img/rar.png' style='width:30%;'>"+file.files[0].name
+        $('.up_pres p').html("点击更改已选文件");
+    }
+</script>
+<script src="js/vue.min.js"></script>
+<script src="js/vue-resource.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/prescription.js"></script>
+
+
+</body>
+</html>

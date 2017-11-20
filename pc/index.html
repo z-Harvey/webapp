@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/mobile_terminal/pc/css/css.css">
+</head>
+<body>
+<div id="app1">
+    <div id="query" style="display: none">
+        <p onclick="$('#query').hide(500)">关闭</p>
+        <div class="bt">
+            <span>报案号</span>
+            <span>姓名</span>
+            <span>身份证号码</span>
+            <span>险种类型</span>
+            <span>日期</span>
+            <span>处理情况</span>
+            <span>操作员</span>
+        </div>
+        <div class="Handle">
+            <div class="Handle1" v-for="q in query_lis" v-if="q.audit_state===0" @click="clic(q)">
+                <span v-text="q.uuid">16489247845</span>
+                <span v-text="q.username"></span>
+                <span v-text="q.card_id"></span>
+                <span v-text="q.type">2017-06-08 10:52:45</span>
+                <span v-text="q.create_time">2017-06-08</span>
+                <span ></span>
+                <span v-text="q.audit_name"></span>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div id="Submit" >
+        <div class="Sub_Left">
+            <img src="/static/mobile_terminal/pc/img/TAI.png" alt="">
+            <div class="forms">
+                <div>
+                    <p>操作员</p>
+                    <input id="Submit_name" v-model="Employee.Employee_name" type="text">
+                    <br>
+                    <br>
+                    <p>密码</p>
+                    <input id="Submit_password" type="password">
+                    <br>
+                    <br>
+                    <button onclick="submi()">登录</button>
+                </div>
+            </div>
+        </div>
+        <div id="Sub_right">
+            <div>
+                保数通理赔管理系统（Rev .1.01）
+            </div>
+        </div>
+    </div>
+    <div id="Box">
+        <div id="Boxleft">
+            <img src="/static/mobile_terminal/pc/img/TAI.png" alt="">
+            <div>
+                <img src="/static/mobile_terminal/pc/img/zhengjian.jpg" alt="">
+                <div>员工姓名：<span v-text="Employee.Employee_name"></span></div>
+                <div>员工编号：<span v-text="Employee.Employee_number"></span></div>
+                <div>登入时间:<span v-text="Employee.Employee_times"></span></div>
+                <button onclick="location.reload()">登出</button>
+            </div>
+        </div>
+        <div id="Boxright">
+            <div class="search">
+                <span>姓名:<input type="text" v-model="input_arr.user"></span>
+                <span>身份证号:<input type="text" v-model="input_arr.card_id"></span>
+                <span>案件号:<input type="text" v-model="input_arr.case_id"></span>
+                <br>
+                <span>日期:起<input type="date" v-model="input_arr.start_time">止<input type="date" v-model="input_arr.end_time"></span>
+                <span>发票编号:<input type="text" v-model="input_arr.end_time"></span>
+            </div>
+            <div class="buttons">
+                <button @click="search">搜索</button>
+            </div>
+            <h3>未处理案件</h3>
+            <div class="bt">
+                <span>报案号</span>
+                <span>姓名</span>
+                <span>身份证号码</span>
+                <span>险种类型</span>
+                <span>日期</span>
+                <span>操作员</span>
+            </div>
+            <div class="Handle">
+                <div class="Handle1" v-for="q in user_data" v-if="q.audit_state===0" @click="clic(q)">
+                    <span v-text="q.uuid">16489247845</span>
+                    <span v-text="q.username"></span>
+                    <span v-text="q.card_id"></span>
+                    <span v-text="q.type">2017-06-08 10:52:45</span>
+                    <span v-text="q.create_time">2017-06-08</span>
+                    <span v-text="q.audit_name"></span>
+                </div>
+            </div>
+            <h3>已处理案件</h3>
+            <div class="bt">
+                <span>报案号</span>
+                <span>姓名</span>
+                <span>身份证号码</span>
+                <span>险种类型</span>
+                <span>日期</span>
+                <span>操作员</span>
+            </div>
+            <div class="NoHandle">
+                <div class="Handle1" v-for="q in user_data" v-if="q.audit_state===1">
+                    <span v-text="q.uuid">16489247845</span>
+                    <span v-text="q.username"></span>
+                    <span v-text="q.card_id"></span>
+                    <span v-text="q.type">2017-06-08</span>
+                    <span v-text="q.create_time">2017-06-08</span>
+                    <span>张三</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/mobile_terminal/pc/js/jquery-3.2.1.min.js"></script>
+<script src="/static/mobile_terminal/pc/js/min.js"></script>
+<script src="/static/mobile_terminal/pc/js/vue-resource.js"></script>
+<script src="/static/mobile_terminal/pc/js/js.js"></script>
+<script>
+
+    function submi() {
+        if($('#Submit_name').val()!==''&&$('#Submit_password').val()!==''){
+            $('#Submit').fadeOut(0)
+            app.fn1();
+        }
+    }
+</script>
+</body>
+</html>

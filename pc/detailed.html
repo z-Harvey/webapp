@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/detailed.css">
+</head>
+<body>
+<div id="app1">
+    <div class="Reject">
+        <div>
+            <h3>驳回案件</h3>
+            <textarea name="" placeholder="请输入驳回理由：" id="" cols="30" rows="10"></textarea>
+            <div>
+                <button>确认驳回</button>
+                <button onclick="$('.Reject').hide()">取消</button>
+            </div>
+        </div>
+    </div>
+    <div id="mote" v-if="sum!==0">
+        <p>请填入收据编号</p>
+        <div id="DataNum">
+            <div v-for="q in arr">
+                <img v-bind:src="lis[q].image_url" @click="imgur(lis[q].image_url)" alt="">
+                <input type="text">
+            </div>
+        </div>
+        <img v-bind:src="ImgUrl" alt="">
+        <button @click="DataNumber" class="tijiao">提交</button>
+    </div>
+    <div id="Box">
+        <div id="Boxleft">
+            <div>
+                <img src="img/TAI.png" alt="">
+            </div>
+            <div>
+                <div style="font-size:10px;">员工姓名：<span v-text="Employee_name">asdf</span></div>
+                <div style="font-size:10px;">员工编号：<span v-text="Employee_number">asdf</span></div>
+                <div style="font-size:10px;">登入时间：<span v-text="Employee_times">asdf</span></div>
+                <div class="tit">
+                    <input type="text" v-model="uuid" placeholder="发票编号搜索">
+                    <div>
+                        <div>序号</div>
+                        <div>票据类型</div>
+                        <div>收据编号</div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div class="lis" v-for="(q,index) in lis" v-bind:class="{'Notice':uuid===q.invoice_no}" v-on:click="lci(q)">
+                            <div v-text="index"></div>
+                            <div v-if="q.separation_state === 1">发票</div>
+                            <div v-if="q.separation_state === 2">处方单</div>
+                            <div v-if="q.separation_state === 3">未知</div>
+                            <div v-text="q.invoice_no"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <button @click="Audit(1)">案件通过</button>
+                <button @click="Audit(2)">案件驳回</button>
+            </div>
+        </div>
+        <div id="Boxright">
+            <h3>单据详情</h3>
+            <div class="Handle" v-if="BoxDetails !== null">
+                <div class="Right_img">
+                    <img v-bind:src="BoxDetails.data[0].image_url" alt="">
+                </div>
+                <div class="details_data">
+                    <div  v-if="separation_state===1">
+                        <div>
+                            <div>姓名：<span  id="span21" contenteditable="true" v-text="BoxDetails.data[0].name" v-on:blur="edit('name',21)">日期</span></div>
+                            <div>日期：<span  id="span1" contenteditable="true" v-text="BoxDetails.data[0].date" v-on:blur="edit('date',1)">日期</span></div>
+                            <div>发票编号：<span  id="span2" contenteditable="true" v-text="BoxDetails.data[0].invoice_no"  v-on:blur="edit('invoice_no',2)">发票编号</span></div>
+                            <div>医保类型：<span  id="span3" contenteditable="true" v-text="BoxDetails.data[0].medical_type" v-on:blur="edit('medical_type',3)">医保类型</span></div>
+                            <div>医院编号：<span  id="span22" contenteditable="true" v-text="BoxDetails.data[0].hospital" v-on:blur="edit('hospital',22)">医保类型</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[0]}">门诊大额支付：<span  id="span16" contenteditable="true" v-text="BoxDetails.data[0].clinic_large_pay" v-on:blur="edit('clinic_large_pay',16)">门诊大额支付</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[1]}">退休补充支付：<span  id="span15" contenteditable="true" v-text="BoxDetails.data[0].retire_supplement_pay" v-on:blur="edit('retire_supplement_pay',15)">退休补充支付</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[2]}">残军补助支付：<span  id="span14" contenteditable="true" v-text="BoxDetails.data[0].remnant_subsidy_pay" v-on:blur="edit('remnant_subsidy_pay',14)">残军补助支付</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[3]}">单位补充险[原公疗]支付：<span  id="span13" contenteditable="true" v-text="BoxDetails.data[0].unit_supplement_pay" v-on:blur="edit('unit_supplement_pay',13)">单位补充险[原公疗]支付</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[4]}">基金支付：<span  id="span12" contenteditable="true" v-text="BoxDetails.data[0].fund_pay" v-on:blur="edit('fund_pay',12)">基金支付</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[5]}">本次医疗范围内金额：<span  id="span11" contenteditable="true" v-text="BoxDetails.data[0].medical_pay" v-on:blur="edit('medical_pay',11)">本次医疗范围内金额</span></div>
+                        </div>
+                        <div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[6]}">累计医保范围内金额：<span  id="span10" contenteditable="true" v-text="BoxDetails.data[0].accumulate_medical_pay" v-on:blur="edit('accumulate_medical_pay',10)">累计医保范围内金额</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[7]}">年度门诊大额累计支付：<span  id="span9" contenteditable="true" v-text="BoxDetails.data[0].year_clinic_large_pay" v-on:blur="edit('year_clinic_large_pay',9)">年度门诊大额累计支付</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[8]}">本次支付后个人账户余额：<span  id="span4" contenteditable="true" v-text="BoxDetails.data[0].account_balance" v-on:blur="edit('account_balance',4)">本次支付后个人账户余额</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[9]}">个人账户支付：<span  id="span8" contenteditable="true" v-text="BoxDetails.data[0].personal_pay" v-on:blur="edit('personal_pay',8)">个人账户支付</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[10]}">自付一：<span id="span17" contenteditable="true" v-text="BoxDetails.data[0].self_conceit" v-on:blur="edit('self_conceit',17)">自付一</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[11]}">起付金额：<span  id="span7" contenteditable="true" v-text="BoxDetails.data[0].amount_pay" v-on:blur="edit('amount_pay',7)">起付金额</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[12]}">超封顶金额：<span  id="span6" contenteditable="true" v-text="BoxDetails.data[0].capped_amount" v-on:blur="edit('capped_amount',6)">超封顶金额</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[13]}">自付二：<span id="span18" contenteditable="true" v-text="BoxDetails.data[0].pay_two" v-on:blur="edit('pay_two',18)">自付二</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[14]}">自费：<span id="span19" contenteditable="true" v-text="BoxDetails.data[0].jewelry" v-on:blur="edit('jewelry',19)">自费</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[15]}">个人支付金额：<span  id="span5" contenteditable="true" v-text="BoxDetails.data[0].individual_payment_amount" v-on:blur="edit('individual_payment_amount',5)">个人支付金额</span></div>
+                            <div v-bind:class="{Notice:BoxDetails_arr[16]}">合计：<span id="span20" contenteditable="true" v-text="BoxDetails.data[0].total" v-on:blur="edit('total',20)">合计</span></div>
+                            <button class="xiugai" @click="modify">确认修改</button>
+                            <button class="xiugai" onclick="$('.Reject').show()">单据驳回</button>
+                        </div>
+                    </div>
+                    <div class="Prescription_sheet" v-if="separation_state===2">
+                        <div style="border-right:1px solid rgba(255,255,255,.3);">
+                            <div>医疗机构：<div v-text="BoxDetails.data[0].hospital_name">中国中医科学院广安门医院</div></div>
+                            <div>医疗机构编码：<span v-text="BoxDetails.data[0].hospital">04151001</span></div>
+                            <div>姓名：<span v-text="BoxDetails.data[0].name">张琳</span></div>
+                            <div>年龄：<span v-text="BoxDetails.data[0].age">53</span></div>
+                            <div>性别：<span v-text="BoxDetails.data[0].sex">女</span></div>
+                            <div>费用：<span v-text="BoxDetails.data[0].cost">325</span></div>
+                            <div>科室：<span v-text="BoxDetails.data[0].department">内分泌门诊</span></div>
+                        </div>
+                        <div>
+                            <div>药物信息：<div v-text="BoxDetails.data[0].medicine">diagnose</div></div>
+                            <div>就诊日期：<span v-text="BoxDetails.data[0].times">2016年12月30日</span></div>
+                            <div>临床诊断：<span v-text="BoxDetails.data[0].diagnose">diagnose</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/min.js"></script>
+<script src="js/vue-resource.js"></script>
+<script src="js/detailed.js"></script>
+
+</body>
+</html>
