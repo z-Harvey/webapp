@@ -10,15 +10,15 @@
     -ms-user-select:none;
     user-select:none;
 }
-html {
-    font-size: 17px;
-}
-@media (max-width: 900px) {
-    html { font-size: 15px; }
-}
-@media (max-width: 400px) {
-    html { font-size: 13px; }
-}
+html{font-size:10px}
+@media screen and (min-width:321px) and (max-width:375px){html{font-size:11px}}
+@media screen and (min-width:376px) and (max-width:414px){html{font-size:12px}}
+@media screen and (min-width:415px) and (max-width:639px){html{font-size:15px}}
+@media screen and (min-width:640px) and (max-width:719px){html{font-size:20px}}
+@media screen and (min-width:720px) and (max-width:749px){html{font-size:22.5px}}
+@media screen and (min-width:750px) and (max-width:799px){html{font-size:23.5px}}
+@media screen and (min-width:800px){html{font-size:25px}}
+
 #titleImg{
     position: fixed;
     width:100%;
@@ -36,13 +36,13 @@ html {
     position: fixed;
     width:100%;
     z-index: 1000;
-    font-size: 3.5em;
     letter-spacing:5px;
     color:#005BAC;
     height:100px;
     top:150px;
     background: #d7d7d7;
     line-height: 100px;
+    font-size:2rem;
 }
 #bt>p{
     width: 100%;
@@ -51,7 +51,6 @@ html {
 }
 .daohang{
     position: fixed;
-    font-size:14px;
     z-index: 9;
     width:100%;
     text-align: center;
@@ -62,20 +61,20 @@ html {
 .daohang>div:nth-child(Odd){
     margin:0 15px 0 ;
     display: inline-block;
-    width:3.1rem;
-    height:3.1rem;
-    font-size: 2.5em;
+    width:2.5rem;
+    height:2.5rem;
     text-align:center;
-    line-height: 3.1rem;
-    border-radius: 3em;
+    line-height: 2.5rem;
+    border-radius: 50%;
     background:#bfb5ca;
     color: #fff;
+    font-size: 1.6rem;
 }
 .daohang>div:nth-child(even){
     display: inline-block;
-    width:3.7rem;
-    height:0.6rem;
-    margin-bottom:0.35rem;
+    width:3rem;
+    height:0.5rem;
+    margin-bottom: 0.5rem;
     background: #bfb5ca;
 }
 .current{
@@ -115,7 +114,6 @@ html {
 #motai>div>div>p{
     display:block;
     color:#fff;
-    font-size: 2.3em;
 }
 #motai>div>button{
     border:0;
@@ -124,7 +122,6 @@ html {
     border-radius: 10px;
     margin:20px 5px 5px 5px ;
     float: right;
-    font-size: 2.5em;
 }
 #motai>div>button>img{
     width:50%;
@@ -186,15 +183,13 @@ html {
     overflow:auto;
     background: #e7e7e7;
     z-index: 8;
-    font-size: 14px;
     top:250px;
+    font-size: 1.6rem;
 }
 #app2>ul{
-    font-size:1.2em;
     margin-top:20%;
 }
 #app2>ul>li{
-    font-size: 2.5em;
     width:90%;
     margin:0 auto;
 }
@@ -204,12 +199,12 @@ html {
     margin:0 auto;
 }
 #app2>ul>li>input{
-    font-size: 1em;
     width:60%;
     border:1px solid rgba(0,168,145,.8);
     margin:10px 0 10px 0;
     height:90px;
     padding: 0 0 0 2%;
+    font-size: 1.6rem;
 }
 #app2>ul>li>input:focus{
     border:1px solid rgba(0,168,145,1);
@@ -217,11 +212,9 @@ html {
 #app2>.file_type{
     width:90%;
     margin:0 auto;
-    font-size: 3em;
     line-height: 60px;
 }
 #app2>.file_type>div{
-    font-size: 0.9em;
     width:100%;
     margin:20px auto;
     display: flex;
@@ -245,8 +238,8 @@ html {
     background: #1565c0;
     border:0;
     color:#fff;
-    font-size: 2.5em;
     margin:100px 0 0 5%;
+    font-size: 1.6rem;
 }
 #app3{
     width:100%;
@@ -256,13 +249,13 @@ html {
     background: #e7e7e7;
     z-index: 7;
     top:230px;
+    font-size: 1.2rem;
 }
 #app3>div:first-child{
     width:100%;
     height:68%;
     margin:20% 0 0 0;
     overflow: auto;
-    font-size: 14px;
 }
 .falseClick{
     width:100%;
@@ -277,7 +270,6 @@ html {
 #app3>div>h1{
     letter-spacing:2px;
     text-align: center;
-    font-size: 4em;
     margin: 0 0 5% 0;
 }
 .a-upload{
@@ -325,8 +317,8 @@ html {
     border:0;
     color:#fff;
     border-radius: 5px;
-    font-size: 2.5em;
     margin:60px 0 0 5%;
+    font-size: 1.6rem;
 }
 button[disabled]{
     background: #666666 !important;
@@ -340,6 +332,7 @@ button[disabled]{
     letter-spacing:4px;
     z-index: 6;
     top:250px;
+    font-size: 1.6rem;
 
 }
 #app4>div:first-child{
@@ -355,7 +348,6 @@ button[disabled]{
     height:33%;
     display: flex;
     justify-content: space-between;
-    font-size:2.5em;
 }
 #app4>div:nth-child(1)>div>span{
     float: right;
@@ -402,17 +394,14 @@ button[disabled]{
 }
 #app4>div:nth-child(2)>div:nth-child(2)>div:nth-child(3)>div{
     width:100%;
-    font-size: 2.7em;
     letter-spacing: 5px;
 }
 #app4>div:nth-child(2)>div:nth-child(2)>div:nth-child(3)>div>span{
     float: right;
 }
 #app4>div:nth-child(2)>div:nth-child(2)>div:nth-child(3)>div>p{
-    font-size: 2.5em;
 }
 #app4>div:nth-child(2)>div>div>div{
-    font-size: 2.5em;
     text-align: left;
 }
 #app4>div:nth-child(2)>div>div>div>span{
@@ -421,11 +410,11 @@ button[disabled]{
 }
 #app4>button{
     width:90%;
+    font-size: 1.6rem;
     height:120px;
     background: #1565c0;
     border:0;
     color:#fff;
-    font-size: 2.5em;
     margin:60px 0 0 5%;
 }
 #app5{
@@ -440,7 +429,6 @@ button[disabled]{
 
 }
 #app5>h1{
-    font-size: 3.5em;
     text-align: center;
 }
 #app5>ul{
@@ -450,7 +438,6 @@ button[disabled]{
 #app5>ul>li{
     width:90%;
     margin:5px auto;
-    font-size: 2.5em;
 }
 #app5>ul>li>span{
     float: right;
@@ -458,7 +445,6 @@ button[disabled]{
 #app5>h2{
     width:100%;
     height:100px;
-    font-size: 2.5em;
     text-align: center;
     background: #1565c0;
     overflow:auto;
@@ -474,7 +460,6 @@ button[disabled]{
 }
 #app5>.luck{
     width:80%;
-    font-size:3.3em;
 }
 #loading{
     width:100%;
@@ -482,11 +467,11 @@ button[disabled]{
     background: #fff;
     position:fixed;
     z-index: 999;
+    font-size: 1.6rem;
     padding:40% 0 0 0;
     text-align: center;
     display: none;
     color:#000;
-    font-size: 3em;
 }
 #loading>img{
     width:40%;
@@ -496,9 +481,9 @@ button[disabled]{
     height:120px;
     background: #199ED8;
     border:0;
+    font-size: 1.6rem;
     color:#fff;
     border-radius: 5px;
-    font-size: 1em;
     margin:60px 0 0 0;
 }
 #app6{
@@ -509,22 +494,19 @@ button[disabled]{
     background: #Fff;
     letter-spacing:4px;
     z-index: 8;
-    font-size: 14px;
     padding-top:5%;
     top:250px;
-
+    font-size: 1.4rem;
 }
 #app6>div{
     width:90%;
     margin:10px auto;
     padding:10px 5% 10px 5%;
     background: rgba(255,255,255,.5);
-    font-size: 2.3em;
     border-bottom:3px dashed #000;
 }
 #app6>div>div>span{
     display: inline-block;
-    font-size:0.9em;
 }
 #app6>div>div>div{
     display: inline-block;
@@ -532,13 +514,11 @@ button[disabled]{
 }
 #app6>div>div>div>span{
     display: inline-block;
-    font-size:0.9em;
 }
 #app6>button{
     width:80%;
     height:60px;
     margin-left:10%;
-    font-size:2em;
     background: #005BAC;
     color:#fff;
     border:1px;
@@ -556,22 +536,20 @@ button[disabled]{
     background: #ddd;
     letter-spacing:4px;
     z-index: 8;
-    font-size: 16px;
     overflow: auto;
     top:250px;
-
+    font-size: 1.4rem;
 }
 #app7>div:nth-child(1){
     width:90%;
     margin:10px auto;
     padding:10px 5% 10px 5%;
     background: rgba(255,255,255,.5);
-    font-size: 2.3em;
     border-bottom:3px solid #000;
+    padding-top:2rem;
 }
 #app7>div>div>span{
     display: inline-block;
-    font-size:0.9em;
 }
 #app7>.name_xinxi>div>div{
     display: inline-block;
@@ -579,28 +557,17 @@ button[disabled]{
 }
 #app7>div>div>div>span{
     display: inline-block;
-    font-size:0.9em;
 }
-/*#app7>a:nth-child(1){*/
-    /*display: inline-block;*/
-    /*width:93%;*/
-    /*padding-left:7%;*/
-    /*height:80px;*/
-    /*background: #53e3a6;*/
-    /*font-size: 2.2em;*/
-    /*text-align: left;*/
-    /*line-height:80px;*/
-    /*color:#fff;*/
-/*}*/
 #app7>div:nth-child(2){
     width:90%;
     margin:10px auto;
     padding:10px 2% 50px 2%;
     background: #fff;
-    font-size: 2.3em;
     border:1px solid #000;
+    font-size: 1.5rem;
 }
 #app7>div:nth-child(2)>div:nth-child(2)>div{
+    font-size: 1.5rem;
     width:100%;
 }
 #app7>div:nth-child(2)>div:nth-child(2)>div>p{
@@ -626,14 +593,17 @@ button[disabled]{
 #app7>div:nth-child(2)>div:nth-child(4){
     height:600px;
 }
+#app7>div:nth-child(2){
+    overflow: hidden;
+}
 #app7>div:nth-child(2)>button{
     width:100%;
     height:80px;
     background: #53e3a6;
     border:0;
-    font-size: 1em;
     letter-spacing: 5px;
     color:#fff;
+    font-size: 1.6rem;
 }
 .xqy{
     width:100%;
@@ -644,12 +614,10 @@ button[disabled]{
     width:100%;
 }
 #app7>div>.xqy>div>span:nth-child(1){
-    font-size: 0.9em;
     text-align:center;
     width:60%;
 }
 #app7>div>.xqy>div>span:nth-child(2){
-    font-size: 0.9em;
     text-align:center;
     width:37%;
 }
@@ -657,7 +625,6 @@ button[disabled]{
     width:80%;
     border-left:2px solid #000;
     margin:50px auto 0;
-    font-size: 1.2em;
 }
 #app7>div>div>.shugang{
     width:30px;
@@ -669,9 +636,9 @@ button[disabled]{
 #app7>div>.shugang_Box>.shugang_text{
     width:100%;
     right:10%;
-    font-size: 0.6em;
     border:0;
     padding-bottom: 5px;
+    overflow: hidden;
 }
 #app7>div>.shugang_Box>.shugang_text>div{
     border-bottom:1px solid #000;
@@ -679,7 +646,6 @@ button[disabled]{
     padding:0 0 5px 20px;
 }
 #app7>div>.shugang_Box>.shugang_text>div>p{
-    font-size: 1em;
     text-align:right;
 }
 .Invoice_details{
@@ -689,7 +655,6 @@ button[disabled]{
 .Invoice_details>p>span{
     display: inline-block;
     width:49%;
-    font-size: 1.4em;
     text-align: center;
 }
 .Prescription_details{
@@ -699,7 +664,6 @@ button[disabled]{
 .Prescription_details>p>span{
     display: inline-block;
     width:49%;
-    font-size: 1.4em;
     text-align: center;
 }
 #app8{
@@ -709,15 +673,13 @@ button[disabled]{
     background: #ddd;
     letter-spacing:4px;
     z-index: 7;
-    font-size: 16px;
     overflow: auto;
     top:250px;
-
+    font-size: 1.6rem;
 }
 #app8>.tite{
     width:95%;
     height:80px;
-    font-size: 3em;
     padding-left:5%;
     line-height: 80px;
 }
@@ -731,7 +693,6 @@ button[disabled]{
 #app8>.img_Box>div>div:nth-child(1){
     width:15%;
     padding-left:1%;
-    font-size:3em;
 }
 #app8>.img_Box>div>div:nth-child(2) {
     width:83%;
@@ -757,7 +718,6 @@ button[disabled]{
     background: #ddd;
     letter-spacing:4px;
     z-index: 20;
-    font-size: 16px;
     overflow: auto;
     top:250px;
 }
@@ -770,20 +730,17 @@ button[disabled]{
 #login>div>div{
     width:100%;
     margin:50px 0;
-    font-size: 3em;
 }
 #login>div>div >input{
     width:80%;
     height:2.5em;
     padding-left:20px;
-    font-size: 0.8em;
     border:0;
     border-radius: 5px;
 }
 #login>div>button{
     width:50%;
     height:2em;
-    font-size: 3em;
     background: #1565c0;
     color:#fff;
     border:0;
@@ -810,8 +767,8 @@ iframe{
     z-index: 9;
     overflow: auto;
     background: #fff;
-    font-size: 1.71rem;
     top:250px;
+    font-size: 1rem;
 }
 #app9>.app9_d1c{
     width:85%;
@@ -821,12 +778,12 @@ iframe{
 #app9>.app9_d1c>button{
     width:100%;
     height:100px;
-    font-size: 2.2rem;
     letter-spacing: 8px;
     background: #14446A;
     color:#fff;
     border:0;
     margin:20px auto;
+    font-size: 1.6rem;
 }
 #app9>.app9_d1c>.app9_d1c_1>p{
     margin:0.5rem 0;
@@ -836,33 +793,30 @@ iframe{
 }
 #app9>.app9_d1c>.app9_d1c_2>div{
     width:70%;
-    margin:20px auto;
+    margin:50px auto;
     color:#000099;
-    font-size: 2.5rem;
     border-left:2px solid #000099;
+    font-size: 1.6rem;
 }
 #app9>.app9_d1c>.app9_d1c_2>div>div>p{
     margin:1rem;
-}
-#app9>.app9_d1c>.app9_d1c_2>div>div>p:nth-child(2) {
-    font-size:1.8rem;
 }
 #app9>.app9_d1c>.app9_d1c_2>div>div{
     position: relative;
     padding-left:2rem;
 }
 #app9>.app9_d1c>.app9_d1c_2>div>div>div{
-    width:2rem;
-    height:2rem;
+    width:1.5rem;
+    height:1.5rem;
     background:#000099;
     border-radius: 50%;
     position: absolute;
-    top:-1rem;
-    left:-1rem;
+    top:-0.75rem;
+    left:-0.75rem;
 }
 #app9>.app9_d1c>.app9_d1c_2>div>div:nth-child(1)>div{
-    width:2.5rem;
-    height:2.5rem;
-    top:-1.25rem;
-    left:-1.25rem;
+    width:2rem;
+    height:2rem;
+    top:-1rem;
+    left:-1rem;
 }
