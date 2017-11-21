@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no" />
     <title>保数通在线理赔终端系统</title>
     <link rel="stylesheet" href="/static/mobile_terminal/css/ordinary.css">
 </head>
 <body>
-<div id="app" >
+<div id="app">
     <div id="titleImg" style="font-size:2em;background-image: url('/static/mobile_terminal/images/app_title.png')">
     </div>
     <div id="bt">
@@ -129,8 +130,7 @@
         <h2 class="Support">
             <img src="/static/mobile_terminal/images/shumei.jpg" alt="">
         </h2>
-    </div>
-    <div id="app4" v-if="app4">
+    </div>    <div id="app4" v-if="app4">
     <div>
         <div><span>姓名:</span><span v-html="file.name"></span></div>
         <div><span>身份证号:</span><span v-html="file.ID"></span></div>
@@ -221,10 +221,7 @@
     </div>
     <div id="app6" v-if="app6">
         <div v-for="q in query"  v-on:click="whole(q.uuid,q.user,q)">
-            <div>
-                <div>姓名:<span  v-text="q.user"></span></div>
-                <div>申请日期:<span  v-text="q.create_time"></span></div>
-            </div>
+            <div><div>姓名:<span  v-text="q.user"></span></div><div>申请日期:<span  v-text="q.create_time">2017-10-11 15:10:56</span></div></div>
             <div><div>保单号：<span>15498884554</span></div></div>
             <div>
                 <div>报案号：<span  v-text="q.uuid" style="color:red;">1546245778</span></div>
@@ -243,8 +240,8 @@
         </h2>
     </div>
     <!--<a @click="iframe(quer.uuid)">-->
-        <!--已完成-->
-        <!--<span>点击查看理赔通知书</span>-->
+    <!--已完成-->
+    <!--<span>点击查看理赔通知书</span>-->
     <!--</a>-->
     <div id="app7"  v-if="app7">
         <div class="name_xinxi">
