@@ -4,95 +4,59 @@
     <meta charset="UTF-8">
     <title>保数通在线理赔终端系统</title>
     <style>
-        .box {
-            width: 400px;
-            padding: 20px;
-            border: 40px solid #a0b3d6;
-            background-color: #eee;
-            overflow: hidden;
-        }
-        .loading {
-            height: 100%;
-            /*background: url(loading.gif) no-repeat center;*/
-        }
-        .in {
-            width: 100px;
-            margin: 0 auto;
-            border: 50px solid #beceeb;
-            background-color: #f0f3f9;
-        }
-        [type=button] {
-            width: 100px;
-            height: 32px;
-            font-size: 100%;
+        .inputBox{
+            border:1px solid red;
         }
     </style>
 </head>
 <body>
-<div id="box" class="box">...</div>
-<p>
-    <input type="button" id="button" onclick="funTransitionHeight('box','1')" value="点击我">
-</p>
-<script>
-    var funTransitionHeight = function(element, time) { // time, 数值，可缺省
-        if (typeof window.getComputedStyle == "undefined") return;
-
-        var height = window.getComputedStyle(element).height;
-
-        element.style.transition = "none";    // 本行2015-05-20新增，mac Safari下，貌似auto也会触发transition, 故要none下~
-
-        element.style.height = "auto";
-        var targetHeight = window.getComputedStyle(element).height;
-        element.style.height = height;
-        element.offsetWidth = element.offsetWidth;
-        if (time) element.style.transition = "height "+ time +"ms";
-        element.style.height = targetHeight;
-    };
-</script>
-<!--<div id="app" style="transition: width 2s;border:1px solid red;">-->
-    <!--<component v-for="a in arr" v-on:ee="fn1"  class="imagesInput" type="file" accept="image/*"></component>-->
-<!--</div>-->
+<div id="app" style="transition: width 2s;border:1px solid red;">
+    <component v-for="a in arr" v-on:ee="fn1"  class="imagesInput" type="file" accept="image/*"></component>
+</div>
 
 <script src="static/mobile_terminal/js/min.js"></script>
 
-<!--<script>-->
-    <!--var myComponent = Vue.extend({-->
-        <!--template: '<input  @change="filesInput"/>',-->
-        <!--methods:{-->
-            <!--filesInput:function (sun) {-->
-                <!--console.log(sun.path[0].files);-->
-                <!--var bod=document.getElementsByTagName('body');-->
-                <!--console.log(bod);-->
-                <!--var reader=new FileReader();-->
-                <!--reader.onload = function (e){-->
-                    <!--var img=new Image();-->
-                    <!--img.src=e.target.result;-->
-                    <!--bod[0].appendChild(img)-->
-                <!--}-->
-                <!--reader.readAsDataURL(sun.path[0].files[0]);-->
-                <!--this.$emit('ee')-->
-            <!--}-->
-        <!--}-->
-    <!--})-->
-    <!--new Vue({-->
-        <!--el: '#app',-->
-        <!--data:{-->
-            <!--arr:[-->
-                <!--'<component></component>'-->
-            <!--]-->
-        <!--},-->
-        <!--methods:{-->
-            <!--fn1:function () {-->
-                <!--var _this=this;-->
-                <!--_this.arr.push('<component v-on:ee="fn1"></component>')-->
-            <!--}-->
-        <!--},-->
-        <!--components: {-->
-            <!--// 2. 将myComponent组件注册到Vue实例下-->
-            <!--'component' : myComponent-->
-        <!--}-->
-    <!--});-->
-<!--</script>-->
+<script>
+    var myComponent = Vue.extend({
+        template: '<div class="inputBox"><input type="file" @change="filesInput"/></div>',
+        methods:{
+            filesInput:function (sun) {
+                console.log(sun.path[0].files);
+                var bod=document.getElementsByTagName('body');
+                console.log(bod);
+                var reader=new FileReader();
+                reader.onload = function (e){
+                    var img=new Image();
+                    img.src=e.target.result;
+                    bod[0].appendChild(img)
+                }
+                reader.readAsDataURL(sun.path[0].files[0]);
+                this.$emit('ee')
+            }
+        }
+    })
+    new Vue({
+        el: '#app',
+        data:{
+            arr:[
+                '<component></component>'
+            ]
+        },
+        methods:{
+            fn1:function () {
+                var _this=this;
+                if(_this.arr.length>7){
+                    return;
+                }
+                _this.arr.push('<component v-on:ee="fn1"></component>')
+            }
+        },
+        components: {
+            // 2. 将myComponent组件注册到Vue实例下
+            'component' : myComponent
+        }
+    });
+</script>
 
 </body>
 </html>
